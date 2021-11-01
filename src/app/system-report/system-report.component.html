@@ -1,0 +1,86 @@
+<div class="mainReportsDiv">
+    <span class="resultsHeader">תוצאות עדכניות</span>
+    <div style="position: absolute; padding-left: 270px; padding-top: 10px;">
+
+        <!-- טבלת הצגת מספר בוחרים במפלגה -->
+        <table>
+            <tr>
+                <th><img src="/assets/likud.jpg/" class="logo1" />&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                <th><img src="/assets/yeshatid.jpg/" class="logo1" /> &nbsp;&nbsp;&nbsp;</th>
+                <th><img src="/assets/zionutdatit.jpg/" class="logo1" /> &nbsp;&nbsp;&nbsp;</th>
+            </tr>
+            <tr>
+                <th class="bigVnum">{{arrParties[0].voters}}</th>
+                <th class="bigVnum">{{arrParties[1].voters}}</th>
+                <th class="bigVnum">{{arrParties[2].voters}}</th>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+<!-- תוצאות חיפוש לפי בחירה -->
+<div class="mainReportsDiv2">
+    <div>
+
+        <span style="margin-left: 540px; font-size: 20px;">:חיפוש תוצאות לפי</span><br />
+        <input style="margin-left: 300px;" #txtParty placeholder="Likud/yeshAtid/ZionutDatit">
+        <input style="margin-left: 50px;" #txtCity placeholder="עיר">
+        <input style="margin-left: 50px;" #txtID placeholder="ת.ז">
+    </div>
+    <div>
+        <input class="srcBtn1" type="button" value="חפש" (click)="GetPartyVoters(txtParty.value)">
+        <input class="srcBtn" type="button" value="חפש" (click)="GetCityVoters(txtCity.value)">
+        <input class="srcBtn" type="button" value="חפש" (click)="GetVoter(txtID.value)">
+    </div>
+
+    <div>
+        <br />
+        <!-- הצגה לפי תעודת זהות -->
+        <table *ngIf="rsltById" border="1px" style="width: 50%; background-color: white;">
+            <tr style="color: rgb(0, 81, 255);">
+                <th>ID</th>
+                <th>FullName</th>
+                <th>City</th>
+                <th>Voted For</th>
+            </tr>
+            <tr *ngIf="rsltById">
+                <td>{{rsltById.id}}</td>
+                <td>{{rsltById.fullName}}</td>
+                <td>{{rsltById.city}}</td>
+                <td>{{rsltById.votedFor}}</td>
+            </tr>
+        </table>
+        <!-- הצגה לפי עיר -->
+        <table tr *ngIf="rsltByCity" border="1px" style="width: 50%; background-color: white;">
+            <tr style="color: rgb(0, 81, 255);">
+                <th>ID</th>
+                <th>FullName</th>
+                <th>City</th>
+                <th>Voted For</th>
+            </tr>
+            <tr *ngFor="let i of rsltByCity">
+                <td>{{i.id}}</td>
+                <td>{{i.fullName}}</td>
+                <td>{{i.city}}</td>
+                <td>{{i.votedFor}}</td>
+            </tr>
+        </table>
+        <!-- הצגה לפי מפלגה  -->
+        <table tr *ngIf="rsltByParty" border="1px" style="width: 50%; background-color: white;">
+            <tr style="color: rgb(0, 81, 255);">
+                <th>ID</th>
+                <th>FullName</th>
+                <th>City</th>
+                <th>Voted For</th>
+            </tr>
+            <tr *ngFor="let i of rsltByParty">
+                <td>{{i.id}}</td>
+                <td>{{i.fullName}}</td>
+                <td>{{i.city}}</td>
+                <td>{{i.votedFor}}</td>
+            </tr>
+        </table>
+
+    </div>
+</div>

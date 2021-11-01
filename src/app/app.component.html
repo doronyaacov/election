@@ -1,0 +1,17 @@
+<div class="headerBox">
+  <span class="header">אתר ההצבעות של ישראל</span>
+</div>
+<!-- כפתורי אפשרויות למעבר ללמסך -->
+<div style="float: right; margin-top: 50px;">
+  <input class="menuBtn" type="button" value="רשימת מצביעים" (click)="VotersListOn()" /><br />
+  <input class="menuBtn" type="button" value="רשימת מפלגות" (click)="PartysListOn()" /><br />
+  <input class="menuBtn" type="button" value="התחברות למערכת" (click)="LoginOn()" /><br />
+  <input class="menuBtn" style="background-color: rgb(0, 81, 255, 0.9); color: white;" type="button" value="דוח מערכת"
+    (click)="ReportsOn()" />
+</div>
+
+<!-- הצגת מסך של בחירת משתמש -->
+<voters *ngIf="votersListClicked" style="float: left; width: 70%;"></voters>
+<party-list *ngIf="partyListClicked"></party-list>
+<login *ngIf="loginClicked"></login>
+<system-report *ngIf="reportClicked"></system-report>
